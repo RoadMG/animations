@@ -54,7 +54,7 @@ const OverviewItem = styled.div`
 
 const Description = styled.p`
   margin: 20px 0px;
-  color: white;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Taps = styled.div`
@@ -158,7 +158,9 @@ export interface PriceData {
   };
 }
 
-const Coin = () => {
+interface ICoinProps {}
+
+const Coin = ({}: ICoinProps) => {
   const { coinID } = useParams<keyof RouteParams>() as RouteParams;
   const location = useLocation();
   const state = location.state as RouteState;
@@ -212,7 +214,7 @@ const Coin = () => {
             </OverviewItem>
             <OverviewItem>
               <span>Price:</span>
-              <span>${tickerData?.quotes.USD.price.toFixed(3)}</span>
+              <span>${tickerData?.quotes?.USD?.price?.toFixed(3)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
